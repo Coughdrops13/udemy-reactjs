@@ -8,6 +8,11 @@ const ExpenseItem = (props) => {
   // destructure props
   const { date, title, amount } = props;
 
+  // function for handling clicks
+  const clickHandler = () => {
+    console.log('Clicked!!!!');
+  };
+
   return (
     <Card className="expense-item">
       <ExpenseDate date={date}/>
@@ -15,6 +20,7 @@ const ExpenseItem = (props) => {
         <h2>{title}</h2>
         <div className="expense-item__price">${amount}</div>
       </div>
+      <button onClick={clickHandler}>Change Title</button>
     </Card>
   );
 }
