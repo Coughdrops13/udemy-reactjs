@@ -31,14 +31,7 @@ const DUMMY_EXPENSES = [
 
 function App() {
   const [ expenses, setExpenses ] = useState(DUMMY_EXPENSES);
-  const [showForm, setShowForm] = useState(false);
-
-  // changes showForm state between true and false and is triggered when
-  // 'add new expense' button in ExpenseForm Component clicked or when
-  // Cancel clicked after 'Add New Expense' button
-  const showFormHandler = () => {
-    setShowForm(prev => !prev);
-  };
+  
   
   const addExpenseHandler = (expense) => {
     setExpenses((prevExpenses) => {
@@ -48,7 +41,7 @@ function App() {
 
   return (
     <div>
-      <NewExpense showForm={showForm} onShowForm={showFormHandler} onAddExpense={addExpenseHandler}/>
+      <NewExpense onAddExpense={addExpenseHandler}/>
       <Expenses items={expenses}/>
     </div>
   );
