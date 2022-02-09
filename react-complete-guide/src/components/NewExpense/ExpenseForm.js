@@ -43,6 +43,7 @@ const ExpenseForm = (props) => {
 
     // if state object used instead of individual states for each input, then this object already exists
     const expenseData = {
+      id: Math.random(),
       title: enteredTitle,
       amount: enteredAmount,
       date: new Date(enteredDate),

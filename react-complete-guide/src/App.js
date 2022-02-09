@@ -37,7 +37,8 @@ function App() {
       return [ expense, ...prevExpenses ]
     });
     console.log('In App.js');
-    console.log(expense);
+    console.log(expense.date.getFullYear());
+    // console.log(expenses[2].getFullYear());
   };
 
   return (
