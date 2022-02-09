@@ -30,20 +30,25 @@ const DUMMY_EXPENSES = [
 ];
 
 function App() {
-  const [expenses, setExpenses ] = useState(DUMMY_EXPENSES);
+  const [ expenses, setExpenses ] = useState(DUMMY_EXPENSES);
+  const [showForm, setShowForm] = useState(false);
 
+  // changes showForm state between true and false and is triggered when
+  // 'add new expense' button in ExpenseForm Component clicked or when
+  // Cancel clicked after 'Add New Expense' button
+  const showFormHandler = () => {
+    setShowForm(prev => !prev);
+  };
+  
   const addExpenseHandler = (expense) => {
     setExpenses((prevExpenses) => {
       return [ expense, ...prevExpenses ]
     });
-    console.log('In App.js');
-    console.log(expense.date.getFullYear());
-    // console.log(expenses[2].getFullYear());
   };
 
   return (
     <div>
-      <NewExpense onAddExpense={addExpenseHandler}/>
+      <NewExpense showForm={showForm} onShowForm={showFormHandler} onAddExpense={addExpenseHandler}/>
       <Expenses items={expenses}/>
     </div>
   );

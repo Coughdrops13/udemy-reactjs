@@ -4,6 +4,15 @@ import ExpenseForm from './ExpenseForm';
 import './NewExpense.css';
 
 const NewExpense = (props) => {
+  if (!props.showForm) {
+    return (
+      <div className="new-expense">
+        <button type="submit" onClick={props.onShowForm}>Add New Expense</button>
+      </div>
+    )
+  }
+
+
   const saveExpenseDataHandler = (enteredExpenseData) => {
     const expenseData = {
       ...enteredExpenseData,
@@ -15,7 +24,7 @@ const NewExpense = (props) => {
 
   return (
     <div className="new-expense">
-      <ExpenseForm onSaveExpenseData={saveExpenseDataHandler}/>
+      <ExpenseForm onCancel={props.onShowForm} onSaveExpenseData={saveExpenseDataHandler}/>
     </div>
   )
 
