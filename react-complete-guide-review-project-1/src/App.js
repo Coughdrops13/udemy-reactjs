@@ -20,7 +20,7 @@ function App() {
   const [usersList, setUsersList] = useState(DUMMYUSERS);
   console.log(usersList);
 
-  const addUserObject = (user) => {
+  const addUser = (user) => {
     setUsersList((prev) => {
       return [user, ...prev];
     });
@@ -33,7 +33,7 @@ function App() {
 
   return (
     <div>
-      <AddUser addUserObject={addUserObject} />
+      <AddUser addUser={addUser} />
       <UsersList users={usersList} onDelete={deleteUserObject} />
     </div>
   );
