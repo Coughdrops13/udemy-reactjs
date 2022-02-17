@@ -13,6 +13,7 @@ const AddUser = (props) => {
       return;
     }
     let newUser = {
+      id: Math.random().toString(),
       name: enteredUsername,
       age: enteredAge,
     };
