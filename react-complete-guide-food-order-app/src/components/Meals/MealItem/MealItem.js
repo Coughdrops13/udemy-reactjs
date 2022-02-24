@@ -6,6 +6,7 @@ import classes from './MealItem.module.css';
 
 const MealItem = (props) => {
   const cartCtx = useContext(CartContext);
+  
   const addToCartHandler = (amount) => {
     cartCtx.addItem({
       id: props.id,
