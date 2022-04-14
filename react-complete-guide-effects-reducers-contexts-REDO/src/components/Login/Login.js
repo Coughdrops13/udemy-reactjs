@@ -84,7 +84,7 @@ const Login = (props) => {
       <form onSubmit={submitHandler}>
         <Input
           id={"email"}
-          isValid={emailState.isValid}
+          isValid={emailIsValid}
           label={"E-mail"}
           type={"email"}
           value={emailState.value}
@@ -93,7 +93,7 @@ const Login = (props) => {
         />
         <Input
           id={"password"}
-          isValid={passwordState.isValid}
+          isValid={passwordIsValid}
           label={"Password"}
           type={"password"}
           value={passwordState.value}
