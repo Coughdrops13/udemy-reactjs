@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer, useContext } from "react";
+import React, { useState, useEffect, useReducer, useContext, useRef } from "react";
 import AuthContext from "../../store/auth-context";
 import Input from "../UI/Input/Input";
 import Card from "../UI/Card/Card";
@@ -42,6 +42,9 @@ const Login = (props) => {
   const { isValid: emailIsValid } = emailState;
   const { isValid: passwordIsValid } = passwordState;
 
+  const emailInputRef = useRef();
+  const passwordInputRef = useRef();
+
   useEffect(() => {
     const identifier = setTimeout(() => {
       setFormIsValid(emailIsValid && passwordIsValid);
@@ -77,9 +80,9 @@ const Login = (props) => {
     if (formIsValid) {
       authCtx.onLogin(emailState.value, passwordState.value);
     } else if (!emailIsValid) {
-
+      emailInputRef.current.activate();
     } else {
-      
+      passwordInputRef.current.activate();
     }
   };
 
@@ -87,6 +90,7 @@ const Login = (props) => {
     <Card className={classes.login}>
       <form onSubmit={submitHandler}>
         <Input
+          ref={emailInputRef}
           id={"email"}
           isValid={emailIsValid}
           label={"E-mail"}
@@ -96,6 +100,7 @@ const Login = (props) => {
           onBlur={validateEmailHandler}
         />
         <Input
+          ref={passwordInputRef}
           id={"password"}
           isValid={passwordIsValid}
           label={"Password"}
