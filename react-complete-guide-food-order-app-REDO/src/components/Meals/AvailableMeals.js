@@ -36,7 +36,7 @@ const AvailableMeals = () => {
   });
 
   return (
-    <section>
+    <section className={classes.meals}>
       <ul>{mealsList}</ul>
     </section>
   );
