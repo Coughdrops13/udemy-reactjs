@@ -5,7 +5,7 @@ import mealsImage from '../../assets/meals.jpg';
 
 const Header = (props) => {
   return (
-    <>
+    <Fragment>
       <header className={classes.header}>
         <h1>ReactMeals</h1>
         <HeaderCartButton>Cart</HeaderCartButton>
@@ -13,7 +13,7 @@ const Header = (props) => {
       <div className={classes["main-image"]}>
         <img src={mealsImage} alt="A table of delicious meats" />
       </div>
-    </>
+    </Fragment>
   )
 };
 
