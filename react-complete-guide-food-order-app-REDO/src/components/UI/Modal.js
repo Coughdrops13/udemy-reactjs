@@ -7,7 +7,7 @@ const Backdrop = (props) => {
   return <div className={classes.backdrop}></div>;
 };
 
-const ModalOveraly = (props) => {
+const ModalOverlay = (props) => {
   return (
     <div className={classes.modal}>
       <div className={classes.content}>{props.children} </div>
