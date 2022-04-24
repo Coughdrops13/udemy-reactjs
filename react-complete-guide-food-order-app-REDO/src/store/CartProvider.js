@@ -2,8 +2,8 @@ import React from "react";
 import CartContext from "./cart-context";
 
 const CartProvider = (props) => {
-  addItemToCartHandler = (item) => { };
-  removeItemFromCartHandler = (id) => { };
+  const addItemToCartHandler = (item) => {};
+  const removeItemFromCartHandler = (id) => {};
 
   const cartContext = {
     items: [],
@@ -11,7 +11,11 @@ const CartProvider = (props) => {
     addItem: addItemToCartHandler,
     removeItem: removeItemFromCartHandler,
   };
-  return <CartContext.provider value={cartContext}>{props.children}</CartContext.provider>;
+  return (
+    <CartContext.Provider value={cartContext}>
+      {props.children}
+    </CartContext.Provider>
+  );
 };
 
 export default CartProvider;
