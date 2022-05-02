@@ -14,15 +14,15 @@ const cartReducer = (state, action) => {
     );
     const existingCartItem = state.items[existingCartItemIndex];
     let updatedItems;
+
+
     if (existingCartItem) {
       const updatedItem = {
         ...existingCartItem,
         amount: existingCartItem.amount + action.item.amount,
       };
-      updatedItems = [
-        [...state.items],
-        (updatedItems[existingCartItemIndex] = updatedItem),
-      ];
+      updatedItems = [...state.items];
+      updatedItems[existingCartItemIndex] = updatedItem;
     } else {
       updatedItems = state.items.concat(action.item);
     }
