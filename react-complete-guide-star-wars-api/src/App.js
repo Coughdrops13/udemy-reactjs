@@ -4,7 +4,6 @@ import MoviesList from "./components/MoviesList";
 import "./App.css";
 
 function App() {
-  //to make http request succesful, change film to films in url
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -12,7 +11,7 @@ function App() {
   const fetchMoviesHandler = useCallback(() => {
     setIsLoading(true);
     setError(null);
-    fetch("https://swapi.dev/api/films/")
+    fetch("https://react-http-95836-default-rtdb.firebaseio.com/movies.json")
       .catch((err) => {
         console.log("ERROR", err.message);
         setError(err.message);
