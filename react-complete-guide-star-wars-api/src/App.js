@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 import MoviesList from "./components/MoviesList";
 import "./App.css";
@@ -9,7 +9,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  function fetchMoviesHandler() {
+  const fetchMoviesHandler = useCallback(() => {
     setIsLoading(true);
     setError(null);
     fetch("https://swapi.dev/api/films/")
@@ -38,7 +38,11 @@ function App() {
         setError(err.message);
         setIsLoading(false);
       });
-  }
+  }, []);     
+
+  useEffect(() => {
+    fetchMoviesHandler();
+  }, [fetchMoviesHandler]);
 
   let content = <p>No movies found.</p>;
 
