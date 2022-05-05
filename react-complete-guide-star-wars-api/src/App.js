@@ -14,15 +14,15 @@ function App() {
     setError(null);
     fetch("https://swapi.dev/api/films/")
       .catch((err) => {
-      console.log("ERROR", err.message);
-      setError(err.message);
-      setIsLoading(false);
-    })
-    .then((res) => {
+        console.log("ERROR", err.message);
+        setError(err.message);
+        setIsLoading(false);
+      })
+      .then((res) => {
         return res.json();
       })
       .then((data) => {
-        const transformedMovies = data.results.map(movieData => {
+        const transformedMovies = data.results.map((movieData) => {
           return {
             id: movieData.episode_id,
             title: movieData.title,
@@ -32,31 +32,32 @@ function App() {
         });
         setMovies(transformedMovies);
         setIsLoading(false);
-      }).catch((err) => {
+      })
+      .catch((err) => {
         console.log("ERROR", err.message);
         setError(err.message);
         setIsLoading(false);
       });
-  };
+  }
 
-  let content = <p>No movies found.</p>
+  let content = <p>No movies found.</p>;
 
+  if (!isLoading && movies.length > 0) {
+    content = <MoviesList movies={movies} />;
+  }
+  if (error) {
+    content = <p>error</p>;
+  }
   if (isLoading) {
     content = <p>Loading...</p>;
-  } else if (!isLoading && movies.length > 0) {
-    content = <MoviesList movies={movies}/>;
-  } else if (!isLoading && error) {
-    content = <p>error</p>;
-  } 
+  }
 
   return (
     <React.Fragment>
       <section>
         <button onClick={fetchMoviesHandler}>Fetch Movies</button>
       </section>
-      <section>
-        {content}
-      </section>
+      <section>{content}</section>
     </React.Fragment>
   );
 }
