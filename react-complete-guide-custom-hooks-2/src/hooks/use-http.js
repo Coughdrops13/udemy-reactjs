@@ -1,4 +1,3 @@
-import req from "express/lib/request";
 import { useState } from "react";
 
 const useHttp = (requestConfig, applyData) => {
