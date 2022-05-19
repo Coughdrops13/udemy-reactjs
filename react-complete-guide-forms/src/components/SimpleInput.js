@@ -8,7 +8,7 @@ const SimpleInput = (props) => {
 
   const enteredNameIsValid = enteredName.trim() !== "";
   const nameInputIsInvalid = !enteredNameIsValid && enteredNameTouched;
-  
+
   const enteredEmailIsValid = enteredEmail
     .trim()
     .match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/);
@@ -24,7 +24,7 @@ const SimpleInput = (props) => {
     setEnteredName(event.target.value);
   };
 
-  const nameInputBlur = (event) => {
+  const nameInputBlurHandler = (event) => {
     setEnteredNameTouched(true);
   };
 
@@ -32,7 +32,7 @@ const SimpleInput = (props) => {
     setEnteredEmail(event.target.value);
   };
 
-  const emailInputBlur = (event) => {
+  const emailInputBlurHandler = (event) => {
     setEnteredEmailTouched(true);
   };
 
