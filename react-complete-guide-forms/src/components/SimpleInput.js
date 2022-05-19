@@ -79,7 +79,7 @@ const SimpleInput = (props) => {
       <div className={emailInputClasses}>
         <label htmlFor="name">Your Email</label>
         <input
-          type="text"
+          type="email"
           id="email"
           onChange={emailInputChangeHandler}
           onBlur={emailInputBlur}
