@@ -20,10 +20,6 @@ const SimpleInput = (props) => {
     reset: resetEmailInput,
   } = useInput(value => value.trim().match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/));
 
-  // const nameInputIsInvalid = !enteredNameIsValid && enteredNameTouched;
-
-  // const emailInputIsInvalid = !enteredEmailIsValid && enteredEmailTouched;
-
   let formIsValid = false;
 
   if (enteredNameIsValid && enteredEmailIsValid) {
