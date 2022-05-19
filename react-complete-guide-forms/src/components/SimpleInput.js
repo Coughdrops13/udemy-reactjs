@@ -77,7 +77,7 @@ const SimpleInput = (props) => {
         <p className="error-text">Name field must not be empty.</p>
       )}
       <div className={emailInputClasses}>
-        <label htmlFor="name">Your Email</label>
+        <label htmlFor="email">Your Email</label>
         <input
           type="email"
           id="email"
@@ -86,9 +86,7 @@ const SimpleInput = (props) => {
           value={enteredEmail}
         />
       </div>
-      {emailInputIsInvalid && (
-        <p className="error-text">Invalid email.</p>
-      )}
+      {emailInputIsInvalid && <p className="error-text">Invalid email.</p>}
       <div className="form-actions">
         <button disabled={!formIsValid}>Submit</button>
       </div>
