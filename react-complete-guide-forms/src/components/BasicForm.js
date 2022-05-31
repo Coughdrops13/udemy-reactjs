@@ -8,12 +8,7 @@ const BasicForm = (props) => {
     valueChangeHandler2: firstNameInputChangeHandler,
     inputBlurHandler2: firstNameInputBlurHandler,
     reset2: resetFirstNameInput,
-  } = useInput2((value) => {
-    if (value.trim() !== '') {
-      console.log('Fuck Alberta.');
-    }
-    return value.trim() !== "";
-  });
+  } = useInput2((value) => value.trim() !== "");
 
   const {
     value2: enteredLastName,
@@ -22,12 +17,7 @@ const BasicForm = (props) => {
     valueChangeHandler2: lastNameInputChangeHandler,
     inputBlurHandler2: lastNameInputBlurHandler,
     reset2: resetLastNameInput,
-  } = useInput2((value) => {
-    if (value.trim() !== '') {
-      console.log('Fuck the people of Alberta');
-    }
-    return value.trim() !== "";
-  });
+  } = useInput2((value) => value.trim() !== "");
 
   const {
     value2: enteredEmail,
@@ -36,23 +26,28 @@ const BasicForm = (props) => {
     valueChangeHandler2: emailInputChangeHandler,
     inputBlurHandler2: emailInputBlurHandler,
     reset2: resetEmailInput,
-  } = useInput2((value) => {
-    if (value.trim().match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)) {
-      console.log('Fuck the oilers and their fans.')
-    }
-      return value.trim().match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)
-  });
+  } = useInput2((value) =>
+    value.trim().match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)
+  );
 
   let formIsValid = false;
-  if (enteredFirstNameIsValid && enteredLastNameIsValid && enteredEmailIsValid) {
-    console.log('FUCK ALBERTA');
+  if (
+    enteredFirstNameIsValid &&
+    enteredLastNameIsValid &&
+    enteredEmailIsValid
+  ) {
+    console.log("FUCK ALBERTA");
     formIsValid = true;
   }
 
   const formSubmissionHandler = (event) => {
     event.preventDefault();
 
-    if (!enteredFirstNameIsValid || !enteredLastNameIsValid || !enteredEmailIsValid) {
+    if (
+      !enteredFirstNameIsValid ||
+      !enteredLastNameIsValid ||
+      !enteredEmailIsValid
+    ) {
       return;
     }
 
@@ -65,11 +60,15 @@ const BasicForm = (props) => {
     resetEmailInput();
   };
 
-  const firstNameInputClasses = !firstNameInputHasError ? "form-control" : "form-control invalid";
-  const lastNameInputClasses = !lastNameInputHasError ? "form-control" : "form-control invalid";
-  const emailInputClasses = !emailInputHasError ? "form-control" : "form-control invalid";
-
-
+  const firstNameInputClasses = !firstNameInputHasError
+    ? "form-control"
+    : "form-control invalid";
+  const lastNameInputClasses = !lastNameInputHasError
+    ? "form-control"
+    : "form-control invalid";
+  const emailInputClasses = !emailInputHasError
+    ? "form-control"
+    : "form-control invalid";
 
   return (
     <form onSubmit={formSubmissionHandler}>
