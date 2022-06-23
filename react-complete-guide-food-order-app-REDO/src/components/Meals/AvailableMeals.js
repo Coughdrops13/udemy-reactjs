@@ -1,40 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Card from "../UI/Card";
 import MealItem from "./MealItem/MealItem";
 import classes from "./AvailableMeals.module.css";
 
-
 const AvailableMeals = () => {
-  let loadedMeals = [];
-  fetch("https://react-http-95836-default-rtdb.firebaseio.com/meals.json")
-  .catch((err) => {
-    console.log("ERROR", err.message);
-  })
-  .then((res) => {
-    return res.json();
-  })
-  .then((data) => {
-    
-    for (const key in data) {
-      loadedMeals.push({
-        id: key,
-        name: data[key].name,
-        description: data[key].description,
-        price: data[key].price,
-      })
-    }
-    console.log('LOADEDMEALS:', loadedMeals);
+  const [meals, setMeals] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
 
-    return loadedMeals;
-    
-  })
-  .catch((err) => {
-    console.log("ERROR", err.message);
-  });
-  
-  console.log("LOADEDMEALS 2:", loadedMeals);
+  useEffect(() => {
+    const fetchMeals = async () => {
+      const response = await fetch(
+        "https://react-http-95836-default-rtdb.firebaseio.com/meals.json"
+      );
+      const responseData = await response.json();
+      const loadedMeals = [];
+      for (const key in responseData) {
+        loadedMeals.push({
+          id: key,
+          name: responseData[key].name,
+          description: responseData[key].description,
+          price: responseData[key].price,
+        });
+      }
+      setMeals(loadedMeals);
+    };
 
-  const mealsList = loadedMeals.map((meal) => (
+    fetchMeals();
+  }, []);
+
+  const mealsList = meals.map((meal) => (
     <MealItem
       id={meal.id}
       key={meal.id}
@@ -43,8 +38,6 @@ const AvailableMeals = () => {
       price={meal.price}
     />
   ));
-    
-    
 
   return (
     <section className={classes.meals}>
