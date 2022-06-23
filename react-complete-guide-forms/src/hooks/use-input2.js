@@ -24,7 +24,7 @@ const inputStateReducer = (state, action) => {
     return initialInputState;
   }
 
-  return inputStateReducer;
+  return initialInputState;
 };
 
 const useInput2 = (validateValue) => {
