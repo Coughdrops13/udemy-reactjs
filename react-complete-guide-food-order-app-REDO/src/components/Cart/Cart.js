@@ -24,10 +24,6 @@ const Cart = (props) => {
     setShowCheckout((prev) => !prev);
   };
 
-  // const confirmHandler = () => {
-  //   console.log("Confirmed");
-  //   props.onClose();
-  // };
 
   const cartItems = (
     <ul className={classes["cart-items"]}>
