@@ -4,6 +4,7 @@ import CartContext from "../../store/cart-context";
 import CartItem from "./CartItem";
 import Checkout from "./Checkout";
 import classes from "./Cart.module.css";
+import { unstable_renderSubtreeIntoContainer } from "react-dom/cjs/react-dom.production.min";
 
 const Cart = (props) => {
   const [showCheckout, setShowCheckout] = useState(false);
@@ -24,7 +25,16 @@ const Cart = (props) => {
     setShowCheckout((prev) => !prev);
   };
 
-  const submitOrderHandler = (userData) => { };
+  const submitOrderHandler = (userData) => {
+    // const { enteredName, enteredStreet, enteredCity, enteredPostalCode } = userData;
+    fetch('https://react-http-95836-default-rtdb.firebaseio.com/orders.json', {
+      method: 'POST',
+      body: JSON.stringify({
+        user: userData,
+        orderedItems: cartCtx.items,
+      })
+    })
+  };
 
   const cartItems = (
     <ul className={classes["cart-items"]}>

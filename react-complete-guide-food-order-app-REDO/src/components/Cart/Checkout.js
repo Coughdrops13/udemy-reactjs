@@ -46,7 +46,13 @@ const Checkout = (props) => {
     if (!formIsValid) {
       return;
     }
-    // Submit Cart Data to backend
+    
+    props.onConfirm({
+      enteredName,
+      enteredStreet,
+      enteredCity,
+      enteredPostalCode,
+    })
   };
 
   const nameControlClasses = `${classes.control} ${
