@@ -24,6 +24,7 @@ const Cart = (props) => {
     setShowCheckout((prev) => !prev);
   };
 
+  const submitOrderHandler = (userData) => { };
 
   const cartItems = (
     <ul className={classes["cart-items"]}>
@@ -60,7 +61,7 @@ const Cart = (props) => {
         <span>Total Amount</span>
         <span>{totalAmount}</span>
       </div>
-      {showCheckout && <Checkout onCancel={props.onClose} />}
+      {showCheckout && <Checkout onConfirm={submitOrderHandler} onCancel={props.onClose} />}
       {!showCheckout && modalActions}
     </Modal>
   );
