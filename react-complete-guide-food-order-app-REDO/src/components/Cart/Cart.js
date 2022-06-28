@@ -8,6 +8,7 @@ import { unstable_renderSubtreeIntoContainer } from "react-dom/cjs/react-dom.pro
 
 const Cart = (props) => {
   const [showCheckout, setShowCheckout] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const cartCtx = useContext(CartContext);
 
   const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
@@ -25,15 +26,21 @@ const Cart = (props) => {
     setShowCheckout((prev) => !prev);
   };
 
-  const submitOrderHandler = (userData) => {
-    // const { enteredName, enteredStreet, enteredCity, enteredPostalCode } = userData;
-    fetch('https://react-http-95836-default-rtdb.firebaseio.com/orders.json', {
+  const submitOrderHandler = async (userData) => {
+    setIsSubmitting(true);
+    const response = await fetch('https://react-http-95836-default-rtdb.firebaseio.com/orders.json', {
       method: 'POST',
       body: JSON.stringify({
         user: userData,
         orderedItems: cartCtx.items,
       })
     })
+
+    if (!response.ok) {
+      throw new Error('Something went wrong while submitting your order.')
+    }
+    
+    setIsSubmitting(false);
   };
 
   const cartItems = (
