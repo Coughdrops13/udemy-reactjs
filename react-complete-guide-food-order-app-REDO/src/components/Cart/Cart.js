@@ -46,7 +46,9 @@ const Cart = (props) => {
     setNameOnOrder(name);
     setIsSubmitting(false);
     setDidSubmit(true);
+    cartCtx.clearCart();
   };
+
 
   const cartItems = (
     <ul className={classes["cart-items"]}>
@@ -92,7 +94,11 @@ const Cart = (props) => {
 
   const didSubmitModalContent = <div>
     <p>Success! Thank you for your order, {nameOnOrder}.</p>
-    <button className={classes["button--alt"]} onClose={props.OnClose}>Close</button>
+    <div className={classes.actions}>
+      <button className={classes.button} onClick={props.onClose}>
+        Close
+      </button>
+    </div>
   </div>
 
   return (
