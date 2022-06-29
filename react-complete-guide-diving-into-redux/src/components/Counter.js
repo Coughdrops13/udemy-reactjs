@@ -3,29 +3,32 @@ import classes from "./Counter.module.css";
 // FUNCTIONAL IMPORTS
 import { useSelector, useDispatch } from "react-redux";
 
-// CLASS-BASED IMPORTS
-// import { connect } from "react-redux";
-// import { Component } from "react";
 
 // FUNCTIONAL cOUNTER COMPONENT
 const Counter = () => {
   const dispatch = useDispatch();
   const counter = useSelector((state) => state.counter);
   const toggleCounterHandler = () => {};
-
+  
   const incrementHandler = () => {
     dispatch({ type: "increment" });
   };
+  
+  const increaseHandler = () => {
+    dispatch({type: "increase", amount: 5})
+  }
+  
   const decrementHandler = () => {
     dispatch({ type: "decrement" });
   };
-
+  
   return (
     <main className={classes.counter}>
       <h1>Redux Counter</h1>
       <div className={classes.value}>{counter}</div>
       <div>
         <button onClick={incrementHandler}>Increment</button>
+        <button onClick={increaseHandler}>Increment by 5</button>
         <button onClick={decrementHandler}>Decrement</button>
       </div>
       <button onClick={toggleCounterHandler}>Toggle Counter</button>
@@ -33,21 +36,31 @@ const Counter = () => {
   );
 };
 
+// FUNCTIONAL EXPORT
+ export default Counter;
+
+
+
+
+
+// CLASS-BASED IMPORTS
+// import { connect } from "react-redux";
+// import { Component } from "react";
 
 // CLASS-BASED cOUNTER COMPONENT
 // class classCounter extends Component {
-//   classIncrementHandler() {
-//     this.props.increment();
-//   }
-
-//   classDecrementHandler() {
-//     this.props.decrement();
-//   }
-
-//   classToggleCounterHandler() {}
-
-//   render() {
-//     return (
+  //   classIncrementHandler() {
+    //     this.props.increment();
+    //   }
+    
+    //   classDecrementHandler() {
+      //     this.props.decrement();
+      //   }
+      
+      //   classToggleCounterHandler() {}
+      
+      //   render() {
+        //     return (
 //       <main className={classes.counter}>
 //         <h1>Redux Counter</h1>
 //         <div className={classes.value}>{this.props.counter}</div>
@@ -78,5 +91,3 @@ const Counter = () => {
 // export default connect(mapStateToProps, mapDispatchToProps)(classCounter);
 
 
-// FUNCTIONAL EXPORT
- export default Counter;
