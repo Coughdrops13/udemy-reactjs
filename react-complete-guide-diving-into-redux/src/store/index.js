@@ -19,10 +19,20 @@ const counterSlice = createSlice({
       state.counter--
     },
     increase(state, action) {
-      state.counter += action.amount;
+      state.counter += action.payload;
     },
   }
 })
+
+
+// with multiple slices, there can be multiple reducers given to the configureSlice method
+const store = configureStore({
+  reducer: counterSlice.reducer,
+});
+
+export const counterActions = counterSlice.actions;
+
+export default store;
 
 // const counterReducer = (state = initialState, action) => {
 //   switch (action.type) {
@@ -52,11 +62,4 @@ const counterSlice = createSlice({
 // };
 
 
-// with multiple slices, there can be multiple reducers given to the configureSlice method
-const store = configureStore({
-  reducer: {
-    counter: counterSlice.reducer,
-  }
-});
 
-export default store;

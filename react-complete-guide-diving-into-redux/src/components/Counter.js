@@ -2,6 +2,7 @@ import classes from "./Counter.module.css";
 
 // FUNCTIONAL IMPORTS
 import { useSelector, useDispatch } from "react-redux";
+import { counterActions } from '../store/index';
 
 
 // FUNCTIONAL cOUNTER COMPONENT
@@ -10,20 +11,21 @@ const Counter = () => {
   const counter = useSelector((state) => state.counter);
   const showCounter = useSelector((state) => state.showCounter);
   const toggleCounterHandler = () => {
-    dispatch({ type: "toggle" });
+    dispatch(counterActions.toggleCounter());
   };
   
   const incrementHandler = () => {
-    dispatch({ type: "increment" });
+    dispatch(counterActions.increment());
+    
+  };
+  
+  const decrementHandler = () => {
+    dispatch(counterActions.decrement());
   };
   
   const increaseHandler = () => {
-    dispatch({type: "increase", amount: 5})
+    dispatch(counterActions.increase(5))
   }
-  
-  const decrementHandler = () => {
-    dispatch({ type: "decrement" });
-  };
   
   return (
     <main className={classes.counter}>
