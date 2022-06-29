@@ -1,48 +1,71 @@
 import classes from "./Counter.module.css";
-import { useSelector, useDispatch } from "react-redux";
-import { Component } from 'react';
+import { useSelector, useDispatch, connect } from "react-redux";
+import { Component } from "react";
 
-const Counter = () => {
-  const dispatch = useDispatch();
-  const counter = useSelector((state) => state.counter);
-  const toggleCounterHandler = () => {};
+// const Counter = () => {
+//   const dispatch = useDispatch();
+//   const counter = useSelector((state) => state.counter);
+//   const toggleCounterHandler = () => {};
 
-  const incrementHandler = () => {
-    dispatch({ type: "increment" });
-  };
-  const decrementHandler = () => {
-    dispatch({ type: "decrement" });
-  };
+//   const incrementHandler = () => {
+//     dispatch({ type: "increment" });
+//   };
+//   const decrementHandler = () => {
+//     dispatch({ type: "decrement" });
+//   };
 
-  return (
-    <main className={classes.counter}>
-      <h1>Redux Counter</h1>
-      <div className={classes.value}>{counter}</div>
-      <div>
-        <button onClick={incrementHandler}>Increment</button>
-        <button onClick={decrementHandler}>Decrement</button>
-      </div>
-      <button onClick={toggleCounterHandler}>Toggle Counter</button>
-    </main>
-  );
-};
+//   return (
+//     <main className={classes.counter}>
+//       <h1>Redux Counter</h1>
+//       <div className={classes.value}>{counter}</div>
+//       <div>
+//         <button onClick={incrementHandler}>Increment</button>
+//         <button onClick={decrementHandler}>Decrement</button>
+//       </div>
+//       <button onClick={toggleCounterHandler}>Toggle Counter</button>
+//     </main>
+//   );
+// };
 
 class classCounter extends Component {
+  classIncrementHandler() {
+    this.props.increment();
+  }
+
+  classDecrementHandler() {
+    this.props.decrement();
+  }
+
+  classToggleCounterHandler() {}
+
   render() {
     return (
       <main className={classes.counter}>
         <h1>Redux Counter</h1>
-        <div className={classes.value}>{counter}</div>
+        <div className={classes.value}>{this.props.counter}</div>
         <div>
-          <button onClick={incrementHandler}>Increment</button>
-          <button onClick={decrementHandler}>Decrement</button>
+          <button onClick={this.classIncrementHandler.bind(this)}>Increment</button>
+          <button onClick={this.classDecrementHandler.bind(this)}>Decrement</button>
         </div>
-        <button onClick={toggleCounterHandler}>Toggle Counter</button>
+        <button onClick={this.classToggleCounterHandler}>Toggle Counter</button>
       </main>
     );
   }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    counter: state.counter,
+  };
 };
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    increment: () => dispatch({ type: "increment" }),
+    decrement: () => dispatch({ type: "decrement" }),
+  };
+};
 
+export default connect(mapStateToProps, mapDispatchToProps)(classCounter);
 
-export default Counter;
+//  export default Counter;
