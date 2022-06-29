@@ -17,4 +17,5 @@ const counterReducer = (state = { counter: 0 }, action) => {
 
 const store = redux.createStore(counterReducer);
 
-store.dispatch;
+
+export default store;
