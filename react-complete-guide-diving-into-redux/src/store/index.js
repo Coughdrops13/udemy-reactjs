@@ -6,33 +6,30 @@ const initialState = {
 }
 
 const counterReducer = (state = initialState, action) => {
-  if (action.type === "toggle") {
-    return {
-      ...state,
-      showCounter: !state.showCounter,
+  switch (action.type) {
+    case "toggle":
+      return {
+        ...state,
+        showCounter: !state.showCounter,
+      }
+    case 'increment':
+      return {
+        ...state,
+        counter: state.counter + 1,
+      }
+    case 'decrement':
+      return {
+        ...state,
+        counter: state.counter - 1,
+      }
+    case 'increase':
+      return {
+        ...state,
+        counter: state.counter + action.amount,
+      }
+    default:
+      return initialState;
     }
-  }
-  if (action.type === "increment") {
-    return {
-      ...state,
-      counter: state.counter + 1,
-    };
-  }
-  if (action.type === "increase") {
-    return {
-      ...state,
-      counter: state.counter + action.amount,
-    };
-  }
-  if (action.type === "decrement") {
-    return {
-      ...state,
-      counter: state.counter - 1,
-    };
-  }
-
-
-  return state;
 };
 
 const store = createStore(counterReducer);
