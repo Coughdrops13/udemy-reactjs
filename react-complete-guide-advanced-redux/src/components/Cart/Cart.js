@@ -13,8 +13,14 @@ const Cart = (props) => {
       <ul>
         {cartItems.map((item) => {
           return <CartItem
-            key={item.id}
-            item={item}          
+            key={item.id}  
+            item={{
+              id: item.id,
+              title: item.title,
+              quantity: item.quantity,
+              total: item.totalPrice,
+              price: item.price,
+            }}
           />
         })}
       </ul>

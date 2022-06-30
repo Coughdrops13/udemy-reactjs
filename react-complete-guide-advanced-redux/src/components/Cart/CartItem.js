@@ -5,7 +5,7 @@ import classes from './CartItem.module.css';
 
 const CartItem = (props) => {
   const dispatch = useDispatch();
-  const { id, title, quantity, totalPrice, price, description } = props.item;
+  const { id, title, quantity, total, price} = props.item;
 
   const decrementQuantityHandler = () => {
     dispatch(cartActions.addItemToCart(id));
@@ -16,7 +16,6 @@ const CartItem = (props) => {
       id,
       title,
       price,
-      description,
     }));
   }
 
@@ -25,7 +24,7 @@ const CartItem = (props) => {
       <header>
         <h3>{title}</h3>
         <div className={classes.price}>
-          ${totalPrice.toFixed(2)}{' '}
+          ${total.toFixed(2)}{' '}
           <span className={classes.itemprice}>(${price.toFixed(2)}/item)</span>
         </div>
       </header>
