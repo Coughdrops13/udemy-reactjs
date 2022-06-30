@@ -6,12 +6,9 @@ import { authActions } from "../store/index";
 const Auth = () => {
   const dispatch = useDispatch();
 
-  const loginHandler = () => {
+  const loginHandler = (e) => {
+    e.preventDefault();
     dispatch(authActions.login());
-  };
-
-  const logoutHandler = () => {
-    dispatch(authActions.logout());
   };
 
   return (
