@@ -30,6 +30,7 @@ const cartSlice = createSlice({
         existingItem.quantity++;
         existingItem.totalPrice += newItem.price;
       }
+      // this reduce function can derive the total quantity just from state.items array, it could then be tweaked to do the same for the total amount
       // const totalQuantity = state.items.reduce(function (acc, obj) { return acc + obj.quantity; }, 0);
       // console.log("TOTALQUANTITY", totalQuantity);
       console.log("ITEM ADDED");
