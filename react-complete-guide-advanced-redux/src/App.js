@@ -16,9 +16,11 @@ function App() {
   const notification = useSelector((state) => state.ui.notification);
 
   useEffect(() => {
-    
+    dispatch(fetchCartData());
+  }, [dispatch]);
+
+  useEffect(() => {  
     if (isInitial) {
-      dispatch(fetchCartData());
       isInitial = false;
       return;
     }    
