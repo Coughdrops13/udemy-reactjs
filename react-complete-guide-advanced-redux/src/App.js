@@ -23,9 +23,12 @@ function App() {
     if (isInitial) {
       isInitial = false;
       return;
-    }    
+    }
 
-    dispatch(sendCartData(cart));
+    if (cart.changed) {
+      dispatch(sendCartData(cart));
+    }
+
   }, [cart, dispatch]);
   return (
     <Fragment>
