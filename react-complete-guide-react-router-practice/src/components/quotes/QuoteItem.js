@@ -1,24 +1,19 @@
-import { useParams, Route } from 'react-router-dom';
-import { Fragment } from 'react';
-
-
 import classes from './QuoteItem.module.css';
-import CommentsList from '../comments/CommentsList';
-import NewCommentForm from '../comments/NewCommentForm';
 
 const QuoteItem = (props) => {
-  const params = useParams();
-
   return (
-    <Fragment>
-      <h1>Quote Details</h1>
-      <p>{params.quoteId}</p>
-      <Route path='/quotes/:quoteId/comments'>
-        <CommentsList />
-        <NewCommentForm />
-      </Route>
-    </Fragment>
-  )
+    <li className={classes.item}>
+      <figure>
+        <blockquote>
+          <p>{props.text}</p>
+        </blockquote>
+        <figcaption>{props.author}</figcaption>
+      </figure>
+      <a className='btn'>
+        View Fullscreen
+      </a>
+    </li>
+  );
 };
 
 export default QuoteItem;
