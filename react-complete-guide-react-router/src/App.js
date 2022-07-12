@@ -10,15 +10,17 @@ function App() {
     <div>
       <MainHeader />
       <main>
-        <Route path="/welcome">
-          <Welcome />
-        </Route>
-        <Route path="/products">
-          <Products />
-        </Route>
-        <Route path='/products/:productId'>
-          <ProductDetails />
-        </Route>
+        <Switch>
+          <Route path="/welcome">
+            <Welcome />
+          </Route>
+          <Route path="/products" exact>
+            <Products />
+          </Route>
+          <Route path='/products/:productId'>
+            <ProductDetails />
+          </Route>
+        </Switch>
       </main> 
     </div>
   );
