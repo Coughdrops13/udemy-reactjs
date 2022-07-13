@@ -3,10 +3,10 @@ import { Fragment } from 'react';
 
 
 // import classes from './QuoteItem.module.css';
-import Comments from '../comments/Comments';
+import Comments from '../components/comments/Comments';
 
 
-const QuoteItem = (props) => {
+const QuoteDetails = (props) => {
   const params = useParams();
 
   return (
@@ -20,4 +20,4 @@ const QuoteItem = (props) => {
   )
 };
 
-export default QuoteItem;
+export default QuoteDetails;
