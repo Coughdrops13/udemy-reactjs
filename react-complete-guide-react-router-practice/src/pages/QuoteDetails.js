@@ -1,4 +1,4 @@
-import { useParams, Route } from 'react-router-dom';
+import { useParams, Route, Redirect } from 'react-router-dom';
 import { Fragment } from 'react';
 
 import HighlightedQuote from '../components/quotes/HighlightedQuote';
@@ -30,9 +30,9 @@ const QuoteDetails = (props) => {
 
   if (!quote) {
     return (
-      <p>No quote found</p>
-    )
-  }
+      <Redirect to='/page-not-found' />
+    );
+  };
 
   return (
     <Fragment>
