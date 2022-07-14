@@ -8,6 +8,7 @@ import { getSingleQuote } from "../lib/api";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 
 const QuoteDetails = (props) => {
+  const match = useRouteMatch();
   const params = useParams();
   
   const { sendRequest, status, data: loadedQuote, error } = useHttp(getSingleQuote, true);
@@ -16,7 +17,6 @@ const QuoteDetails = (props) => {
     sendRequest(params.quoteId);
   }, [sendRequest, params.quoteId])
 
-  const match = useRouteMatch();
 
   if (status === 'pending') {
     return (
@@ -32,7 +32,7 @@ const QuoteDetails = (props) => {
     )
   }
 
-  if (status === 'completed' && !loadedQuote) {
+  if (status === 'completed' && !loadedQuote.text) {
     return <Redirect to="/page-not-found" />;
   }
 
