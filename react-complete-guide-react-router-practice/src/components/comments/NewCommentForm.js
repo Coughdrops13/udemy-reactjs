@@ -10,7 +10,7 @@ const NewCommentForm = (props) => {
 
   const { onAddedComment } = props;
 
-  const { sendRequest, status } = useHttp(addComment);
+  const { sendRequest, status, error } = useHttp(addComment);
 
   useEffect(() => {
     if (status === 'completed' && !error) {
@@ -26,7 +26,7 @@ const NewCommentForm = (props) => {
     // send comment to server
     const enteredText = commentTextRef.current.value;
 
-    sendRequest({ text: enteredText }, props.quoteId);
+    sendRequest({commentData: { text: enteredText }, quoteId: props.quoteId});
   };
 
   return (
